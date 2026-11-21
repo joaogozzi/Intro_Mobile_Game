@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PremiumButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI costText = null;
+    [SerializeField] private TextMeshProUGUI valueText = null;
     [SerializeField] private Image upgradeImg = null;
     [SerializeField] private Button button = null;
     private PremiumStore.Premium premiumData = null;
@@ -18,6 +19,7 @@ public class PremiumButton : MonoBehaviour
     public void UpdateDisplay()
     {
         costText.text = premiumData.cost.ToString();
+        valueText.text = premiumData.name;
         upgradeImg.sprite = premiumData.sprite;
     }
 

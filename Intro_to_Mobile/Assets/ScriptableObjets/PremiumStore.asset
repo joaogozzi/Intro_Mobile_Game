@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: PremiumStore
   m_EditorClassIdentifier: Assembly-CSharp::PremiumStore
   premiumList:
-  - name: Add 1000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +1000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 5
     pointsAmount: 1000
-  - name: Add 5000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +5000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 10
     pointsAmount: 5000
-  - name: Add 10000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +10000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 25
     pointsAmount: 10000
-  - name: Add 50000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +50000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 50
     pointsAmount: 50000
-  - name: Add 100000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +100000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 100
     pointsAmount: 100000
-  - name: Add 1000000000 points
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: +1000000000
+    sprite: {fileID: 1669173568904356353, guid: 0cec6d2278e7eef4087d05f19a06a6a7, type: 3}
     cost: 250
     pointsAmount: 1000000000

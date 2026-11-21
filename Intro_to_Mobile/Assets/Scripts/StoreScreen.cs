@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static Upgrades;
 
 public class StoreScreen : MonoBehaviour
 {
@@ -10,24 +9,22 @@ public class StoreScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        SetupUpgrades();
+        OpenClickUpgrades();
     }
 
-    void SetupUpgrades()
+    void SetupUpgrades(List<Upgrades.Upgrade> upgrades, string effectLabel)
     {
-        List<Upgrades.Upgrade> upgrades = GameManager.Instance.GetUpgrades();
-
         for (int i = 0; i < upgrades.Count; ++i)
         {
             GameObject button = Instantiate(upgradeButtonPrefab, content);
             UpgradeButton buttonData = button.GetComponent<UpgradeButton>();
-            buttonData.SetData(upgrades[i]);
+            buttonData.SetData(upgrades[i], effectLabel);
         }
     }
 
     void DestroyBtns()
     {
-        for (int i = 0; i < content.childCount; ++i)
+        for (int i = content.childCount - 1; i >= 0; --i)
         {
             Destroy(content.GetChild(i).gameObject);
         }
@@ -45,10 +42,16 @@ public class StoreScreen : MonoBehaviour
         }
     }
 
-    public void OpenUpgrades()
+    public void OpenClickUpgrades()
     {
         DestroyBtns();
-        SetupUpgrades();
+        SetupUpgrades(GameManager.Instance.GetClickUpgrades(), "/ click");
+    }
+
+    public void OpenIdleUpgrades()
+    {
+        DestroyBtns();
+        SetupUpgrades(GameManager.Instance.GetIdleUpgrades(), "/ sec");
     }
 
     public void OpenPremium()
@@ -56,12 +59,10 @@ public class StoreScreen : MonoBehaviour
         DestroyBtns();
         SetupPointsStore();
     }
-
     private void OnDisable()
     {
         DestroyBtns();
     }
-
     public void OnCloseScreen()
     {
         ScreenManager.Instance.CloseScreen();

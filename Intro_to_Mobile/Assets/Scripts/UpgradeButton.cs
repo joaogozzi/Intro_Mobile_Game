@@ -4,6 +4,8 @@ using TMPro;
 
 public class UpgradeButton : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI nameText = null;
+    [SerializeField] private TextMeshProUGUI levelText = null;
     [SerializeField] private TextMeshProUGUI costText = null;
     [SerializeField] private Image upgradeImg = null;
     [SerializeField] private Button button = null;
@@ -11,16 +13,19 @@ public class UpgradeButton : MonoBehaviour
 
     private long prevPoints = 0;
 
-    public void SetData(Upgrades.Upgrade upgrade)
+    private string effectLabel = "";
+
+    public void SetData(Upgrades.Upgrade upgrade, string effectLabel = "")
     {
         upgradeData = upgrade;
+        this.effectLabel = effectLabel;
         prevPoints = GameManager.Instance.GetPoints();
         UpdateDisplay();
     }
 
     private void Update()
     {
-        if(prevPoints != GameManager.Instance.GetPoints())
+        if (prevPoints != GameManager.Instance.GetPoints())
         {
             UpdateDisplay();
             prevPoints = GameManager.Instance.GetPoints();
@@ -29,14 +34,25 @@ public class UpgradeButton : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        costText.text = upgradeData.cost.ToString();
+        int level = GameManager.Instance.GetLevel(upgradeData);
+        long cost = GameManager.Instance.GetCost(upgradeData);
+
+        costText.text = cost.ToString();
         upgradeImg.sprite = upgradeData.sprite;
-        button.interactable = upgradeData.cost < GameManager.Instance.GetPoints();
+        button.interactable = cost <= GameManager.Instance.GetPoints();
+
+        if (nameText != null)
+            nameText.text = upgradeData.name;
+
+        if (levelText != null)
+        {
+            levelText.text = $"Lv {level}  (+{upgradeData.amountPerLevel} {effectLabel})";
+        }
     }
-    
+
     public void OnClick()
     {
-        if(GameManager.Instance.PurchaseUpgrade(upgradeData))
+        if (GameManager.Instance.PurchaseUpgrade(upgradeData))
         {
             UpdateDisplay();
         }
